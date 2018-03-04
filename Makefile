@@ -1,4 +1,5 @@
 CFLAGS := -O2 -Wall -W -Wextra -Wunused  -Wmissing-prototypes -Wstrict-prototypes
+CC := clang
 AS := nasm
 
 exes := $(sort $(basename $(wildcard *.asm)))
