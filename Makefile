@@ -1,14 +1,9 @@
-CFLAGS := -O2 -Wall -W -Wextra -Wunused  -Wmissing-prototypes -Wstrict-prototypes
-CC := clang
-AS := nasm
+targets := $(sort $(basename $(wildcard *.S)))
+all: $(targets)
 
-exes := $(sort $(basename $(wildcard *.asm)))
+%: %.S
+	$(CC) $< -o $@
 
-all: $(exes)
-%.o: %.asm
-	$(AS) -felf64 $< -o $@
-%: %.o
-	$(CC) $(CFLAGS) $< -o $@
-.PHONY: clean
+.PHONE: clean
 clean:
-	rm -f $(exes)
+	rm $(targets)
